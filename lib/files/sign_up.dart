@@ -91,16 +91,16 @@ class _SignUpViewState extends State<SignUpView> {
                       controller: firstnameController,
                       decoration: const InputDecoration(
                         icon: Icon(Icons.person),
-                        hintText: 'Username',
-                        labelText: 'Username *',
+                        hintText: 'First Name',
+                        labelText: 'First Name *',
                       ),
                     ),
                     TextFormField(
                       controller: lastnameController,
                       decoration: const InputDecoration(
                         icon: Icon(Icons.person),
-                        hintText: 'Username',
-                        labelText: 'Username *',
+                        hintText: 'Last Name',
+                        labelText: 'Last Name *',
                       ),
                     ),
                     TextFormField(
