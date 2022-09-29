@@ -1,0 +1,26 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-myvillage2022-dev-120549-authRole",
+      "UnauthRoleArn": "arn:aws:iam::140968851232:role/amplify-myvillage2022-dev-120549-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::140968851232:role/amplify-myvillage2022-dev-120549-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-myvillage2022-dev-120549-deployment",
+      "UnauthRoleName": "amplify-myvillage2022-dev-120549-unauthRole",
+      "StackName": "amplify-myvillage2022-dev-120549",
+      "StackId": "arn:aws:cloudformation:us-east-1:140968851232:stack/amplify-myvillage2022-dev-120549/a36e0e70-3e2e-11ed-87b7-0ec8165aaba7",
+      "AmplifyAppId": "do4scm996mnb3"
+    },
+    "categories": {
+      "auth": {
+        "myvillage2022": {}
+      },
+      "function": {
+        "signupdemoamplifylayera905e0aa": {
+          "deploymentBucketName": "amplify-myvillage2022-dev-120549-deployment",
+          "s3Key": "amplify-builds/signupdemoamplifylayera905e0aa-LambdaLayerVersion3563f79b-build.zip"
+        }
+      }
+    }
+  }
+}
