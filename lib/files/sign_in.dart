@@ -1,5 +1,6 @@
 import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class SignInView extends StatefulWidget {
   @override
@@ -22,8 +23,8 @@ class _SignInViewState extends State<SignInView> {
     // If a user is already signed in - Amplify.Auth.signIn will throw an exception
     try {
       await Amplify.Auth.signOut();
-    } on AuthException catch (e) {
-      print(e);
+    } on PlatformException catch (e) {
+      print(e.code);
     }
 
     try {
@@ -31,9 +32,10 @@ class _SignInViewState extends State<SignInView> {
           username: usernameController.text.trim(),
           password: passwordController.text.trim());
       Navigator.pop(context, true);
-    } on AuthException catch (e) {
+    } on PlatformException catch (e) {
       setState(() {
-        _signUpError = e.message;
+        _signUpError = e.code;
+        print(e.code);
       });
     }
   }

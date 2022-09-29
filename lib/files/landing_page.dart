@@ -1,4 +1,5 @@
 import 'package:amplify_ui_component/files/sign_in.dart';
+import 'package:amplify_ui_component/files/sign_up.dart';
 import 'package:flutter/material.dart';
 
 class LandingPage extends StatefulWidget {
@@ -55,8 +56,8 @@ class _LandingPageState extends State<LandingPage> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             openDialogButton("Sign In", onSignInSuccess, SignInView()),
-            /*   openDialogButton(
-                    "Sign Up", () => {print("sign up success")}, SignUpView())*/
+            openDialogButton(
+                "Sign Up", () => {print("sign up success")}, SignUpView())
           ],
         ),
       ),
