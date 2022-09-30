@@ -1,5 +1,6 @@
 import 'package:amplify_ui_component/files/sign_in.dart';
 import 'package:amplify_ui_component/files/sign_up.dart';
+import 'package:amplify_ui_component/next_screen.dart';
 import 'package:flutter/material.dart';
 
 class LandingPage extends StatefulWidget {
@@ -41,8 +42,10 @@ class _LandingPageState extends State<LandingPage> {
   }
 
   void onSignInSuccess() {
-    Navigator.pushAndRemoveUntil(context,
-        MaterialPageRoute(builder: (context) => MainPage()), (route) => false);
+    Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(builder: (context) => const NextScreen()),
+        (route) => false);
   }
 
   @override
@@ -138,21 +141,9 @@ class _MainPageState extends State<MainPage> {
       body: Center(
         child: Container(
           // color: Colors.purple,
-          child: Text("Signed In Successfully!!"),
+          child: const Text("Signed In Successfully!!"),
         ),
       ),
-      /*  ListView.builder(
-          itemCount: itemKeys.length,
-          itemBuilder: (context, index) {
-            return ImageLineItem(storageKey: itemKeys[index]);
-          }),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          _showImageUploader();
-        },
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ),*/
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:amplify_flutter/amplify_flutter.dart';
+import 'package:amplify_ui_component/files/reset_password_email.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -48,7 +49,7 @@ class _SignInViewState extends State<SignInView> {
         Expanded(
           // wrap your Column in Expanded
           child: Padding(
-            padding: EdgeInsets.all(10.0),
+            padding: const EdgeInsets.all(10.0),
             child: Column(
               children: [
                 TextFormField(
@@ -72,6 +73,15 @@ class _SignInViewState extends State<SignInView> {
                 ElevatedButton(
                   onPressed: _signIn,
                   child: const Text('Sign In'),
+                ),
+
+                InkWell(
+                  child: const Text("Forgot Password?"),
+                  onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const ResetPasswordView()),
+                  ),
                 ),
                 // ErrorView(_signUpError)
               ],

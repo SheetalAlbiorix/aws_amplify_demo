@@ -9,7 +9,6 @@ class SignUpView extends StatefulWidget {
 }
 
 class _SignUpViewState extends State<SignUpView> {
-  // final usernameController = TextEditingController();
   final firstnameController = TextEditingController();
   final lastnameController = TextEditingController();
   final passwordController = TextEditingController();
@@ -81,7 +80,7 @@ class _SignUpViewState extends State<SignUpView> {
         Expanded(
           // wrap your Column in Expanded
           child: Padding(
-            padding: EdgeInsets.all(10.0),
+            padding: const EdgeInsets.all(10.0),
             child: Column(
               children: [
                 Visibility(
@@ -135,20 +134,25 @@ class _SignUpViewState extends State<SignUpView> {
                   ]),
                 ),
                 Visibility(
-                    visible: _isSignedUp,
-                    child: Column(children: [
-                      TextFormField(
-                          controller: confirmationCodeController,
-                          decoration: const InputDecoration(
-                            icon: Icon(Icons.confirmation_number),
-                            hintText: 'The code we sent you',
-                            labelText: 'Confirmation Code *',
-                          )),
-                      ElevatedButton(
-                        onPressed: _confirmSignUp,
-                        child: const Text('Confirm Sign Up'),
-                      ),
-                    ])),
+                  visible: _isSignedUp,
+                  child: Column(children: [
+                    TextFormField(
+                        controller: confirmationCodeController,
+                        decoration: const InputDecoration(
+                          icon: Icon(Icons.confirmation_number),
+                          hintText: 'The code we sent you',
+                          labelText: 'Confirmation Code *',
+                        )),
+                    ElevatedButton(
+                      onPressed: _confirmSignUp,
+                      child: const Text('Confirm Sign Up'),
+                    ),
+                  ]),
+                ),
+                SizedBox(
+                  height: 5,
+                ),
+
                 const Padding(padding: EdgeInsets.all(10.0)),
                 // ErrorView(_signUpError)
               ],
