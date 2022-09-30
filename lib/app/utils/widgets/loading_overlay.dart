@@ -1,0 +1,24 @@
+import 'dart:ui';
+
+import 'package:amplify_ui_component/app/utils/helper/theme_service.dart';
+import 'package:flutter/material.dart';
+class LoadingOverlay extends StatelessWidget {
+  final Widget child;
+  final bool isLoading;
+
+  const LoadingOverlay({
+    Key? key,
+    required this.isLoading,
+    required this.child,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    if (isLoading) {
+      return const Center(
+        child: CircularProgressIndicator(),
+      );
+    }
+    return child;
+  }
+}
