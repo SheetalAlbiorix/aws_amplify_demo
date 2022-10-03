@@ -121,8 +121,7 @@ class SignInScreen extends StatelessWidget {
                       isPassword: false,
                       textInputAction: TextInputAction.next,
                       onChanged: validateEmail,
-                      textEditingController:
-                      signInScreenController.emailController,
+                      textEditingController: signInScreenController.emailController,
                       /* bgColor: Colors.white,*/
                       border: 10,
                       labelText: BaseStrings.email,

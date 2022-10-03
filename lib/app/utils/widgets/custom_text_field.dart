@@ -124,8 +124,7 @@ class CustomTextFormFieldState extends State<CustomTextFormField> {
               ),
               hintText: widget.hint,
               labelText: widget.labelText,
-              labelStyle:
-              const TextStyle(fontSize: 13, color: BaseColors.grey)),
+              labelStyle: const TextStyle(fontSize: 13, color: BaseColors.grey)),
         ),
       ),
     );

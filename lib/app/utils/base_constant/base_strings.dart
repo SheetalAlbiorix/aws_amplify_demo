@@ -31,7 +31,7 @@ class BaseStrings {
       'We have created a comfortable learning environment so that you always have the motivation to move forward.';
 
   /// Sign-in Screen
-  static const String signIn = 'Sign In.';
+  static const String signIn = 'Sign In';
   static const String email = 'Email';
   static const String password = 'Password';
   static const String welcomeBack = 'Welcome Back!';
