@@ -1,12 +1,24 @@
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:amplify_ui_component/amplifyconfiguration.dart';
+import 'package:amplify_ui_component/view/navigator/routes.dart';
+import 'package:amplify_ui_component/view/utils/base_constant/base_constants.dart';
+import 'package:amplify_ui_component/view/utils/helper/helpers.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 import 'files/landing_page.dart';
 
-void main() {
-  runApp(MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await GetStorage.init();
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
+      .then((_) {
+    runApp(MyApp());
+  });
 }
 
 class MyApp extends StatefulWidget {
@@ -70,13 +82,15 @@ class _MyAppState extends State<MyApp> {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Flutter Amplify App',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-          visualDensity: VisualDensity.adaptivePlatformDensity,
-        ),
-        home: _display());
+    ThemeService().init(context);
+    return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: BaseStrings.appName,
+      theme: ThemeService.light,
+      darkTheme: ThemeService.dark,
+      themeMode: ThemeService().theme,
+      getPages: Pages.pages(),
+      initialRoute: BaseRoute.splash,
+    );
   }
 }

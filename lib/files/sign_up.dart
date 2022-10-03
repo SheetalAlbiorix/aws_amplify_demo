@@ -14,7 +14,7 @@ class _SignUpViewState extends State<SignUpView> {
   final lastnameController = TextEditingController();
   final passwordController = TextEditingController();
   final emailController = TextEditingController();
-  final phoneController = TextEditingController();
+  // final phoneController = TextEditingController();
   final confirmationCodeController = TextEditingController();
 
   String _signUpError = "";
@@ -86,41 +86,42 @@ class _SignUpViewState extends State<SignUpView> {
               children: [
                 Visibility(
                   visible: !_isSignedUp,
-                  child: Column(children: [
-                    TextFormField(
-                      controller: firstnameController,
-                      decoration: const InputDecoration(
-                        icon: Icon(Icons.person),
-                        hintText: 'First Name',
-                        labelText: 'First Name *',
+                  child: Column(
+                    children: [
+                      TextFormField(
+                        controller: firstnameController,
+                        decoration: const InputDecoration(
+                          icon: Icon(Icons.person),
+                          hintText: 'First Name',
+                          labelText: 'First Name *',
+                        ),
                       ),
-                    ),
-                    TextFormField(
-                      controller: lastnameController,
-                      decoration: const InputDecoration(
-                        icon: Icon(Icons.person),
-                        hintText: 'Last Name',
-                        labelText: 'Last Name *',
+                      TextFormField(
+                        controller: lastnameController,
+                        decoration: const InputDecoration(
+                          icon: Icon(Icons.person),
+                          hintText: 'Last Name',
+                          labelText: 'Last Name *',
+                        ),
                       ),
-                    ),
-                    TextFormField(
-                      obscureText: true,
-                      controller: passwordController,
-                      decoration: const InputDecoration(
-                        icon: Icon(Icons.lock),
-                        hintText: 'Password',
-                        labelText: 'Password *',
+                      TextFormField(
+                        obscureText: true,
+                        controller: passwordController,
+                        decoration: const InputDecoration(
+                          icon: Icon(Icons.lock),
+                          hintText: 'Password',
+                          labelText: 'Password *',
+                        ),
                       ),
-                    ),
-                    TextFormField(
-                      controller: emailController,
-                      decoration: const InputDecoration(
-                        icon: Icon(Icons.email),
-                        hintText: 'Email',
-                        labelText: 'Email *',
+                      TextFormField(
+                        controller: emailController,
+                        decoration: const InputDecoration(
+                          icon: Icon(Icons.email),
+                          hintText: 'Email',
+                          labelText: 'Email *',
+                        ),
                       ),
-                    ),
-                    /*   TextFormField(
+                      /*   TextFormField(
                       controller: phoneController,
                       decoration: const InputDecoration(
                         icon: Icon(Icons.phone),
@@ -128,11 +129,12 @@ class _SignUpViewState extends State<SignUpView> {
                         labelText: 'Phone number *',
                       ),
                     ),*/
-                    ElevatedButton(
-                      onPressed: _signUp,
-                      child: const Text('Sign Up'),
-                    ),
-                  ]),
+                      ElevatedButton(
+                        onPressed: _signUp,
+                        child: const Text('Sign Up'),
+                      ),
+                    ],
+                  ),
                 ),
                 Visibility(
                     visible: _isSignedUp,

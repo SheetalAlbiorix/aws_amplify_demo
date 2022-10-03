@@ -3,7 +3,7 @@ import 'package:amplify_ui_component/files/sign_up.dart';
 import 'package:flutter/material.dart';
 
 class LandingPage extends StatefulWidget {
-  LandingPage({Key? key}) : super(key: key);
+  const LandingPage({Key? key}) : super(key: key);
 
   @override
   _LandingPageState createState() => _LandingPageState();
@@ -26,7 +26,6 @@ class _LandingPageState extends State<LandingPage> {
             ),*/
           ]);
         });
-
     if (result) onSuccess();
   }
 
