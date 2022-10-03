@@ -68,6 +68,23 @@ class _ResetPasswordState extends State<ResetPassword> {
               ),
               20.toVSB,
               CustomTextFormField(
+                /* isPassword: true,
+                obscureText: true,*/
+                maxLength: 6,
+                textInputAction: TextInputAction.next,
+                keyboardType: TextInputType.number,
+                /*  onChanged: validatePasswordLength,*/
+                /*  onChanged: validatePasswordLength,
+                      validator: validatePasswordLength,*/
+                /* textEditingController:
+                signInScreenController.passwordController,*/
+                // bgColor: Colors.white,
+                border: 10,
+                // bgBorderColor: Colors.grey,
+                labelText: BaseStrings.code,
+              ),
+              10.toVSB,
+              CustomTextFormField(
                 isPassword: true,
                 obscureText: true,
                 textInputAction: TextInputAction.next,

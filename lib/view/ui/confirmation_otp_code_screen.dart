@@ -7,7 +7,7 @@ import '../utils/base_constant/base_constants.dart';
 import '../utils/widgets/widgets.dart';
 
 class ConfirmationOtpCode extends StatefulWidget {
-  const ConfirmationOtpCode({Key? key}) : super(key: key);
+    const ConfirmationOtpCode({Key? key}) : super(key: key);
 
   @override
   State<ConfirmationOtpCode> createState() => _ConfirmationOtpCodeState();
@@ -80,7 +80,8 @@ class _ConfirmationOtpCodeState extends State<ConfirmationOtpCode> {
               27.toVSB,
               TextFieldPin(
                   autoFocus: true,
-                  textController: textEditingController,
+                  textController:
+                      signupScreenController.confirmationCodeController,
                   codeLength: 6,
                   alignment: MainAxisAlignment.start,
                   defaultBoxSize: Get.width / 8.0,

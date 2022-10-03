@@ -25,7 +25,7 @@ class SignInScreenController extends GetxController {
       await Amplify.Auth.signIn(
           username: emailController.text.trim(),
           password: passwordController.text.trim());
-      Get.to(ForgotPassword());
+      Get.to(NextScreen());
     } on PlatformException catch (e) {
       _signUpError = e.code;
       print(e.code);

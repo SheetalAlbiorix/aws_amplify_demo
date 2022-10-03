@@ -88,7 +88,7 @@ class SignupScreenController extends GetxController {
       await Amplify.Auth.confirmSignUp(
           username: emailController.text.trim(),
           confirmationCode: confirmationCodeController.text.trim());
-      /* Navigator.pop(context, true);*/
+      Get.to(NextScreen());
     } on PlatformException catch (error) {
       _setError(error);
       print(error.code);

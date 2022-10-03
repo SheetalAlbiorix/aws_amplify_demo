@@ -1,6 +1,7 @@
 part of base_constants;
 
 class BaseStrings {
+  static const String code = 'Code';
   static const String start = 'Start';
   static const String appName = 'My Village';
   static const String logIn = 'Log In';

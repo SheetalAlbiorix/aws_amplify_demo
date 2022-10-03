@@ -106,7 +106,7 @@ class ForgotPassword extends GetView<ForgotPasswordController> {
                         bgColor: BaseColors.black,
                         border: 10,
                         onTap: () {
-                          Get.to(const ResetPassword());
+                        forgotPasswordController.resetPassword();
                         },
                         child: const Padding(
                           padding: EdgeInsets.symmetric(vertical: 15.0),
