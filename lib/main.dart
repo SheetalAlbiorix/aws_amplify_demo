@@ -505,7 +505,7 @@ class _MyAppState extends State<MyApp> {
               filled: true,
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12),
-                borderSide: BorderSide.,
+               // borderSide: BorderSide.,
               ),
             ),
             // theme of the primary button for each step
