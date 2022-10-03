@@ -7,7 +7,7 @@ import '../utils/base_constant/base_constants.dart';
 import '../utils/widgets/widgets.dart';
 
 class ConfirmationOtpCode extends StatefulWidget {
-  ConfirmationOtpCode({Key? key}) : super(key: key);
+  const ConfirmationOtpCode({Key? key}) : super(key: key);
 
   @override
   State<ConfirmationOtpCode> createState() => _ConfirmationOtpCodeState();
