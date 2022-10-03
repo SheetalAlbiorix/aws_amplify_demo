@@ -7,6 +7,7 @@ class SignupScreenController extends GetxController {
 
   final nameController = TextEditingController();
   final emailController = TextEditingController();
+  final phoneController = TextEditingController();
   final passwordController = TextEditingController();
   final conformPasswordController = TextEditingController();
   final confirmationCodeController = TextEditingController();
@@ -67,18 +68,19 @@ class SignupScreenController extends GetxController {
 
     Map<CognitoUserAttributeKey, String> userAttributes = {
       CognitoUserAttributeKey.email: emailController.text,
-      CognitoUserAttributeKey.name: nameController.text
+      CognitoUserAttributeKey.name: nameController.text,
+      CognitoUserAttributeKey.phoneNumber: phoneController.text,
     };
     try {
       await Amplify.Auth.signUp(
-          username: emailController.text.trim(),
-          password: passwordController.text.trim(),
-          options: CognitoSignUpOptions(userAttributes: userAttributes));
+        username: emailController.text.trim(),
+        password: passwordController.text.trim(),
+        options: CognitoSignUpOptions(userAttributes: userAttributes),
+      );
       _isSignedUp = true;
       Get.to(ConfirmationOtpCode());
-    } on PlatformException catch (error) {
-      _setError(error);
-      print(error);
+    } on AuthException catch (error) {
+      print(error.message);
     }
   }
 
@@ -89,25 +91,44 @@ class SignupScreenController extends GetxController {
           username: emailController.text.trim(),
           confirmationCode: confirmationCodeController.text.trim());
       Get.to(NextScreen());
-    } on PlatformException catch (error) {
-      _setError(error);
-      print(error.code);
+    } on AuthException catch (error) {
+      print(error.message);
     }
   }
 
-  void _setError(PlatformException error) {
-    _signUpError.value = error.code;
+  void resendConfirmationCode() async {
+    try {
+      await Amplify.Auth.resendSignUpCode(username: emailController.text);
+    } on AuthException catch (e) {
+      _signUpError.value = e.message.toString();
+      Get.snackbar(
+        e.message.toString(),
+        "Failed",
+        colorText: Colors.white,
+        backgroundColor: Colors.red,
+        icon: Icon(Icons.error, color: Colors.white),
+        snackPosition: SnackPosition.BOTTOM,
+        isDismissible: true,
+        forwardAnimationCurve: Curves.easeOutBack,
+      );
+      print(e.message.toString());
+    }
+  }
+}
+
+/*void _setError(PlatformException error) {
+    signInError = error.code;
     print(error.code);
   }
-
-  Future<UserCredential?> signInWithFacebook() async {
-    final LoginResult result = await FacebookAuth.instance.login();
-    if (result.status == LoginStatus.success) {
-      // Create a credential from the access token
-      final OAuthCredential credential =
-          FacebookAuthProvider.credential(result.accessToken!.token);
-      // Once signed in, return the UserCredential
-      return await FirebaseAuth.instance.signInWithCredential(credential);
+*/
+Future<UserCredential?> signInWithFacebook() async {
+  final LoginResult result = await FacebookAuth.instance.login();
+  if (result.status == LoginStatus.success) {
+    // Create a credential from the access token
+    final OAuthCredential credential =
+        FacebookAuthProvider.credential(result.accessToken!.token);
+    // Once signed in, return the UserCredential
+    return await FirebaseAuth.instance.signInWithCredential(credential);
     }
     return null;
   }
@@ -146,5 +167,3 @@ class SignupScreenController extends GetxController {
 
     signInFormKey.currentState!.save();
   }*/
-
-}

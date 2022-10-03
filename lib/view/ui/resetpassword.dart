@@ -1,19 +1,16 @@
-import 'package:amplify_ui_component/view/ui/screens.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../viewmodel/controller.dart';
 import '../utils/base_constant/base_constants.dart';
-import '../utils/helper/helpers.dart';
 import '../utils/widgets/widgets.dart';
 
-class ResetPassword extends StatefulWidget {
-  const ResetPassword({Key? key}) : super(key: key);
 
-  @override
-  State<ResetPassword> createState() => _ResetPasswordState();
-}
+class ResetPassword extends GetView<ForgotPasswordController> {
+  final ForgotPasswordController forgotPasswordController = Get.find();
 
-class _ResetPasswordState extends State<ResetPassword> {
+  ResetPassword({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,6 +65,7 @@ class _ResetPasswordState extends State<ResetPassword> {
               ),
               20.toVSB,
               CustomTextFormField(
+                textEditingController: forgotPasswordController.codeController,
                 /* isPassword: true,
                 obscureText: true,*/
                 maxLength: 6,
@@ -86,9 +84,11 @@ class _ResetPasswordState extends State<ResetPassword> {
               10.toVSB,
               CustomTextFormField(
                 isPassword: true,
+                textEditingController:
+                    forgotPasswordController.passwordController,
                 obscureText: true,
                 textInputAction: TextInputAction.next,
-                onChanged: validatePasswordLength,
+                /* onChanged: validatePasswordLength,*/
                 /*  onChanged: validatePasswordLength,
                       validator: validatePasswordLength,*/
                 /* textEditingController:
@@ -99,20 +99,20 @@ class _ResetPasswordState extends State<ResetPassword> {
                 labelText: BaseStrings.newPassword,
               ),
               10.toVSB,
-              CustomTextFormField(
+              /* CustomTextFormField(
                 isPassword: true,
                 obscureText: true,
                 textInputAction: TextInputAction.next,
-                onChanged: validatePasswordLength,
-                /*  onChanged: validatePasswordLength,
-                      validator: validatePasswordLength,*/
-                /* textEditingController:
-                signInScreenController.passwordController,*/
+              */ /*  onChanged: validatePasswordLength,*/ /*
+                */ /*  onChanged: validatePasswordLength,
+                      validator: validatePasswordLength,*/ /*
+                */ /* textEditingController:
+                signInScreenController.passwordController,*/ /*
                 // bgColor: Colors.white,
                 border: 10,
                 // bgBorderColor: Colors.grey,
                 labelText: BaseStrings.confirmPassword,
-              ),
+              ),*/
               20.toVSB,
               CustomRaisedButton(
                 width: Get.width,
@@ -120,9 +120,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                 bgColor: BaseColors.black,
                 border: 10,
                 onTap: () {
-                  Get.to(
-                    SignUpScreen(),
-                  );
+                  forgotPasswordController.confirmPasswordReset();
                 },
                 child: const Padding(
                   padding: EdgeInsets.symmetric(vertical: 15.0),

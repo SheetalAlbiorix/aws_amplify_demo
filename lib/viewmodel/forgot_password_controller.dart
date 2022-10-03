@@ -2,6 +2,8 @@ part of controller;
 
 class ForgotPasswordController extends GetxController {
   final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  final codeController = TextEditingController();
   var emailCorrectBool = true.obs;
 
   RxBool isPasswordReset = false.obs;
@@ -13,7 +15,7 @@ class ForgotPasswordController extends GetxController {
         username: emailController.text.trim(),
       );
       isPasswordReset.value = true;
-      Get.to(const ResetPassword());
+      Get.to(ResetPassword());
     } on PlatformException catch (e) {
       signUpError.value = e.code;
 
@@ -22,6 +24,21 @@ class ForgotPasswordController extends GetxController {
         _signUpExceptions.add(el.exception);
       });*/
 
+    }
+  }
+
+  confirmPasswordReset() async {
+    try {
+      await Amplify.Auth.confirmResetPassword(
+          username: emailController.text.trim(),
+          newPassword: passwordController.text.trim(),
+          confirmationCode: codeController.text.trim());
+      Get.to(NextScreen());
+    } on PlatformException catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+      /* setError(e);*/
     }
   }
 }

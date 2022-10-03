@@ -9,8 +9,6 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
-import 'files/landing_page.dart';
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -70,14 +68,6 @@ class _MyAppState extends State<MyApp> {
       _isAmplifyConfigured = true;
     });
   }*/
-
-  Widget _display() {
-    if (_isAmplifyConfigured) {
-      return LandingPage();
-    } else {
-      return LoadingPage();
-    }
-  }
 
   // This widget is the root of your application.
   @override

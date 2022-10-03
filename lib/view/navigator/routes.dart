@@ -26,7 +26,7 @@ class Pages {
       ),
       GetPage(
         name: BaseRoute.resetPageScreen,
-        page: () => const ResetPassword(),
+        page: () => ResetPassword(),
       ),
       GetPage(
         name: BaseRoute.confirmationOtpCode,

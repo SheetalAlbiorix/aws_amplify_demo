@@ -119,6 +119,7 @@ class SignUpScreen extends GetView<SignupScreenController> {
                         ),
                       ),
                     ),
+
                     /*  signInScreenController.checkBoxBool.value ==
                                         false
                                     ? Image.asset(
@@ -149,7 +150,7 @@ class SignUpScreen extends GetView<SignupScreenController> {
                   /*  onChanged: validatePasswordLength,
                     validator: validatePasswordLength,*/
                   textEditingController:
-                      signupScreenController.passwordController,
+                      signupScreenController.conformPasswordController,
                   // bgColor: Colors.white,
                   border: 10,
                   // bgBorderColor: Colors.grey,
@@ -169,6 +170,20 @@ class SignUpScreen extends GetView<SignupScreenController> {
                   border: 10,
                   // bgBorderColor: Colors.grey,
                   labelText: BaseStrings.confirmPassword,
+                ),
+                10.toVSB,
+                CustomTextFormField(
+                  isPassword: false,
+                  keyboardType: TextInputType.phone,
+                  textInputAction: TextInputAction.done,
+                  // onChanged: validatePasswordLength,
+                  onChanged: validatePasswordLength,
+                  validator: validatePasswordLength,
+                  textEditingController: signupScreenController.phoneController,
+                  // bgColor: Colors.white,
+                  border: 10,
+                  // bgBorderColor: Colors.grey,
+                  labelText: BaseStrings.phoneNumber,
                 ),
                 20.toVSB,
                 CustomRaisedButton(

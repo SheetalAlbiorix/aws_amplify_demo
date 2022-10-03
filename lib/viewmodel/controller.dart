@@ -6,6 +6,7 @@ import 'package:amplify_ui_component/next_screen.dart';
 import 'package:amplify_ui_component/view/ui/resetpassword.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';

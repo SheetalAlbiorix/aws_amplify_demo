@@ -1,4 +1,5 @@
 import 'package:amplify_ui_component/viewmodel/controller.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sms_otp_auto_verify/sms_otp_auto_verify.dart';
@@ -119,19 +120,20 @@ class _ConfirmationOtpCodeState extends State<ConfirmationOtpCode> {
                 alignment: Alignment.centerLeft,
                 child: RichText(
                   textAlign: TextAlign.left,
-                  text: const TextSpan(
+                  text: TextSpan(
                     // style: TextStyle(color: Colors.black, fontSize: 36),
                     children: <InlineSpan>[
-                      TextSpan(
+                      const TextSpan(
                         text: BaseStrings.didntReceiveTheOtp,
                         style: TextStyle(color: BaseColors.black),
                       ),
-                      WidgetSpan(
+                      const WidgetSpan(
                         child: SizedBox(
                           width: 5,
                         ),
                       ),
                       TextSpan(
+                        recognizer: TapGestureRecognizer()..onTap = () {},
                         text: BaseStrings.resend,
                         style: TextStyle(
                             color: BaseColors.black,
