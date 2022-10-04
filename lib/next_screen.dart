@@ -1,3 +1,4 @@
+import 'package:amplify_ui_component/view/ui/screens.dart';
 import 'package:flutter/material.dart';
 
 import 'main.dart';
@@ -6,26 +7,18 @@ class NextScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('BatMan App')),
+      appBar: AppBar(title: const Text('Successful Screen')),
       body: Container(
         color: const Color(0xffE1E5E4),
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Container(
-                color: const Color(0xffE1E5E4),
-                height: 200,
-                child: Image.asset(
-                  'assets/images/applogo.png',
-                  fit: BoxFit.cover,
-                ),
-              ),
               const Padding(
                 padding: EdgeInsets.all(20.0),
                 child: Center(
                   child: Text(
-                    'I\'m BATMAN',
+                    'Done',
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
                   ),
                 ),
@@ -57,7 +50,7 @@ class NextScreen extends StatelessWidget {
     Navigator.of(context).pushReplacement(
       MaterialPageRoute(
         builder: (_) {
-          return MyApp();
+          return SignInScreen();
         },
       ),
     );
