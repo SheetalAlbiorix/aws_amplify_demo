@@ -36,7 +36,8 @@ class _SignUpViewState extends State<SignUpView> {
 
     Map<CognitoUserAttributeKey, String> userAttributes = {
       CognitoUserAttributeKey.email: emailController.text,
-      CognitoUserAttributeKey.phoneNumber: phoneController.text,
+      CognitoUserAttributeKey.phoneNumber:
+          "+1${phoneController.text.split('-').join('')}",
       CognitoUserAttributeKey.name:
           "${firstnameController.text} ${lastnameController.text}",
     };
@@ -147,15 +148,16 @@ class _SignUpViewState extends State<SignUpView> {
                         print(value);
                       },
                       selectorConfig: const SelectorConfig(
+                        showFlags: false,
                         selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
                       ),
                       ignoreBlank: false,
+                      maxLength: 12,
                       autoValidateMode: AutovalidateMode.disabled,
                       countries: const ["US"],
                       selectorTextStyle: const TextStyle(color: Colors.black),
                       initialValue: number,
                       textFieldController: phoneController,
-                      formatInput: false,
                       keyboardType: const TextInputType.numberWithOptions(
                           signed: true, decimal: true),
                       inputBorder: const OutlineInputBorder(),
@@ -163,6 +165,7 @@ class _SignUpViewState extends State<SignUpView> {
                         print('On Saved: $number');
                       },
                     ),
+
                     /*   TextFormField(
                       controller: phoneController,
                       decoration: const InputDecoration(
