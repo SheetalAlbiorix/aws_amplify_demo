@@ -69,7 +69,8 @@ class SignupScreenController extends GetxController {
     Map<CognitoUserAttributeKey, String> userAttributes = {
       CognitoUserAttributeKey.email: emailController.text,
       CognitoUserAttributeKey.name: nameController.text,
-      CognitoUserAttributeKey.phoneNumber: phoneController.text,
+      CognitoUserAttributeKey.phoneNumber:
+          "+1${phoneController.text.split('-').join('')}",
     };
     try {
       await Amplify.Auth.signUp(
@@ -90,7 +91,7 @@ class SignupScreenController extends GetxController {
       await Amplify.Auth.confirmSignUp(
           username: emailController.text.trim(),
           confirmationCode: confirmationCodeController.text.trim());
-      Get.to(NextScreen());
+      Get.to(const AccountCreated());
     } on AuthException catch (error) {
       print(error.message);
     }

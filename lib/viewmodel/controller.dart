@@ -17,6 +17,7 @@ import 'package:twitter_login/twitter_login.dart';
 
 import '../model/on_boarding_model.dart';
 import '../view/ui/confirmation_otp_code_screen.dart';
+import '../view/ui/screens.dart';
 import '../view/utils/base_constant/base_constants.dart';
 
 part 'forgot_password_controller.dart';

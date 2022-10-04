@@ -3,6 +3,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sms_otp_auto_verify/sms_otp_auto_verify.dart';
+
 import '../utils/base_constant/base_constants.dart';
 import '../utils/widgets/widgets.dart';
 
@@ -134,7 +135,7 @@ class _ConfirmationOtpCodeState extends State<ConfirmationOtpCode> {
                       TextSpan(
                         recognizer: TapGestureRecognizer()..onTap = () {},
                         text: BaseStrings.resend,
-                        style: TextStyle(
+                        style: const TextStyle(
                             color: BaseColors.black,
                             fontWeight: FontWeight.bold),
                       ),

@@ -172,7 +172,56 @@ class SignUpScreen extends GetView<SignupScreenController> {
                   labelText: BaseStrings.confirmPassword,
                 ),
                 10.toVSB,
-                CustomTextFormField(
+                Container(
+                  height: 60.h,
+                  width: Get.width,
+                  decoration: BoxDecoration(
+                    color: BaseColors.white,
+                    borderRadius: const BorderRadius.all(
+                      Radius.circular(10),
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: BaseColors.shadow.withOpacity(0.1),
+                        spreadRadius: 5,
+                        blurRadius: 7,
+                        // offset: Offset(0, 3), // changes position of shadow
+                      ),
+                    ],
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 10.0, vertical: 10),
+                    child: InternationalPhoneNumberInput(
+                      countrySelectorScrollControlled: false,
+                      onInputChanged: (PhoneNumber number) {
+                        print(number.phoneNumber);
+                      },
+                      onInputValidated: (bool value) {
+                        print(value);
+                      },
+                      selectorConfig: const SelectorConfig(
+                        showFlags: false,
+                        selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
+                      ),
+                      ignoreBlank: false,
+                      maxLength: 12,
+                      autoValidateMode: AutovalidateMode.disabled,
+                      countries: const ["US"],
+                      selectorTextStyle: const TextStyle(color: Colors.black),
+                      initialValue: PhoneNumber(isoCode: 'US'),
+                      textFieldController:
+                          signupScreenController.phoneController,
+                      keyboardType: const TextInputType.numberWithOptions(
+                          signed: true, decimal: true),
+                      /*  inputBorder: const OutlineInputBorder(),*/
+                      onSaved: (PhoneNumber number) {
+                        print('On Saved: $number');
+                      },
+                    ),
+                  ),
+                ),
+                /*  CustomTextFormField(
                   isPassword: false,
                   keyboardType: TextInputType.phone,
                   textInputAction: TextInputAction.done,
@@ -184,7 +233,7 @@ class SignUpScreen extends GetView<SignupScreenController> {
                   border: 10,
                   // bgBorderColor: Colors.grey,
                   labelText: BaseStrings.phoneNumber,
-                ),
+                ),*/
                 20.toVSB,
                 CustomRaisedButton(
                   width: Get.width,
