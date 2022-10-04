@@ -41,6 +41,13 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
       );
       Navigator.pop(context, true);
     } on PlatformException catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('$e'),
+          // Change to something to show a meaningful error message
+          backgroundColor: Theme.of(context).errorColor,
+        ),
+      );
       print(e);
       /*  setState(() {
         _signUpError = e.code;
@@ -65,71 +72,83 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 2,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: <Widget>[
-          Expanded(
-            child: Padding(
-              padding: EdgeInsets.all(10.0),
-              child: Column(
-                children: [
-                  Visibility(
-                    child: Column(children: [
-                      TextFormField(
-                        decoration: const InputDecoration(
-                          icon: Icon(Icons.password),
-                          hintText: 'Old Password',
-                          labelText: 'Old Password',
-                        ),
-                        controller: oldPasswordController,
-                        // keyboardType: TextInputType.emailAddress,
-                      ),
-                      const Padding(padding: EdgeInsets.all(10.0)),
-                      TextFormField(
-                        enableSuggestions: false,
-                        decoration: const InputDecoration(
-                          icon: Icon(Icons.password),
-                          hintText: 'New Password',
-                          labelText: 'New Password',
-                        ),
-                        controller: newPasswordController,
-                        // keyboardType: TextInputType.emailAddress,
-                      ),
-                      const Padding(padding: EdgeInsets.all(10.0)),
-                      InkWell(
-                        /*  textColor:
-                        Colors.black, // Theme.of(context).primaryColor,
-                        color: Colors.amber,*/
-                        onTap: () => _ChangePassword(context),
-                        child: const Text(
-                          'Change Password',
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                      /*   InkWell(
+    return Scaffold(
+      appBar: AppBar(),
+      body: Card(
+        elevation: 0,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Center(
+                  child: Column(
+                    children: [
+                      Visibility(
+                        child: Column(children: [
+                          TextFormField(
+                            decoration: const InputDecoration(
+                              icon: Icon(Icons.password),
+                              hintText: 'Old Password',
+                              labelText: 'Old Password',
+                            ),
+                            controller: oldPasswordController,
+                            // keyboardType: TextInputType.emailAddress,
+                          ),
+                          const Padding(padding: EdgeInsets.all(10.0)),
+                          TextFormField(
+                            enableSuggestions: false,
+                            decoration: const InputDecoration(
+                              icon: Icon(Icons.password),
+                              hintText: 'New Password',
+                              labelText: 'New Password',
+                            ),
+                            controller: newPasswordController,
+                            // keyboardType: TextInputType.emailAddress,
+                          ),
+                          const Padding(padding: EdgeInsets.all(10.0)),
+                          InkWell(
+                            /*  textColor:
+                            Colors.black, // Theme.of(context).primaryColor,
+                            color: Colors.amber,*/
+                            onTap: () {
+                              _ChangePassword(context);
 
-                        onTap: _displayCreateAccount,
-                        child: Text(
-                          'Create Account',
-                          style: Theme.of(context).textTheme.subtitle2,
-                        ),
-                      ),*/
-                    ]),
+                              /*ScaffoldMessenger.of(context)
+                                  .showSnackBar(const SnackBar(
+                                content: Text('Hello This is Snackbar'),
+                              ));*/
+                            },
+                            child: const Text(
+                              'Change Password',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          /*   InkWell(
+
+                            onTap: _displayCreateAccount,
+                            child: Text(
+                              'Create Account',
+                              style: Theme.of(context).textTheme.subtitle2,
+                            ),
+                          ),*/
+                        ]),
+                      ),
+                      /* Visibility(
+                          // visible: _isPasswordReset,
+                          child: Column(children: [
+                            ConfirmResetPassword(
+                                emailController.text.trim(),),
+                          ])),*/
+                      // ErrorView(_signUpError, _signUpExceptions)
+                    ],
                   ),
-                  /* Visibility(
-                      // visible: _isPasswordReset,
-                      child: Column(children: [
-                        ConfirmResetPassword(
-                            emailController.text.trim(),),
-                      ])),*/
-                  // ErrorView(_signUpError, _signUpExceptions)
-                ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

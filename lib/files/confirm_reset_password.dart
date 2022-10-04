@@ -29,7 +29,7 @@ class ConfirmResetPassword extends StatelessWidget {
     Navigator.of(context).pushReplacement(
       MaterialPageRoute(
         builder: (_) {
-          return NextScreen();
+          return const NextScreen();
         },
       ),
     );
@@ -39,7 +39,7 @@ class ConfirmResetPassword extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       // decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
-      padding: EdgeInsets.all(5),
+      padding: const EdgeInsets.all(5),
       child: Column(
         children: [
           TextFormField(
@@ -74,7 +74,7 @@ class ConfirmResetPassword extends StatelessWidget {
             /*      textColor: Colors.black, // Theme.of(context).primaryColor,
             color: Colors.amber,*/
             onTap: () => _confirm_password_reset(context),
-            child: Text(
+            child: const Text(
               'Reset Password & Sign In',
               style: TextStyle(fontWeight: FontWeight.bold),
             ),

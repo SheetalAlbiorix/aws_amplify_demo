@@ -2,6 +2,9 @@ import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:intl_phone_number_input/intl_phone_number_input.dart';
+
+import '../next_screen.dart';
 
 class SignUpView extends StatefulWidget {
   @override
@@ -18,6 +21,8 @@ class _SignUpViewState extends State<SignUpView> {
 
   String _signUpError = "";
   bool _isSignedUp = false;
+  String initialCountry = 'US';
+  PhoneNumber number = PhoneNumber(isoCode: 'US');
 
   @override
   void initState() {
@@ -31,6 +36,7 @@ class _SignUpViewState extends State<SignUpView> {
 
     Map<CognitoUserAttributeKey, String> userAttributes = {
       CognitoUserAttributeKey.email: emailController.text,
+      CognitoUserAttributeKey.phoneNumber: phoneController.text,
       CognitoUserAttributeKey.name:
           "${firstnameController.text} ${lastnameController.text}",
     };
@@ -58,7 +64,12 @@ class _SignUpViewState extends State<SignUpView> {
       await Amplify.Auth.confirmSignUp(
           username: emailController.text.trim(),
           confirmationCode: confirmationCodeController.text.trim());
-      Navigator.pop(context, true);
+      /* Navigator.pop(context, true);*/
+      Navigator.of(context).pushReplacement(MaterialPageRoute(
+        builder: (_) {
+          return const NextScreen();
+        },
+      ));
     } on PlatformException catch (error) {
       _setError(error);
       print(error.code);
@@ -119,6 +130,39 @@ class _SignUpViewState extends State<SignUpView> {
                         labelText: 'Email *',
                       ),
                     ),
+                    /*TextFormField(
+                      controller: phoneController,
+                      decoration: const InputDecoration(
+                        icon: Icon(Icons.phone),
+                        hintText: 'Phone',
+                        labelText: 'Phone *',
+                      ),
+                    ),*/
+                    InternationalPhoneNumberInput(
+                      countrySelectorScrollControlled: false,
+                      onInputChanged: (PhoneNumber number) {
+                        print(number.phoneNumber);
+                      },
+                      onInputValidated: (bool value) {
+                        print(value);
+                      },
+                      selectorConfig: const SelectorConfig(
+                        selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
+                      ),
+                      ignoreBlank: false,
+                      autoValidateMode: AutovalidateMode.disabled,
+                      countries: const ["US"],
+                      selectorTextStyle: const TextStyle(color: Colors.black),
+                      initialValue: number,
+                      textFieldController: phoneController,
+                      formatInput: false,
+                      keyboardType: const TextInputType.numberWithOptions(
+                          signed: true, decimal: true),
+                      inputBorder: const OutlineInputBorder(),
+                      onSaved: (PhoneNumber number) {
+                        print('On Saved: $number');
+                      },
+                    ),
                     /*   TextFormField(
                       controller: phoneController,
                       decoration: const InputDecoration(
@@ -149,7 +193,7 @@ class _SignUpViewState extends State<SignUpView> {
                     ),
                   ]),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 5,
                 ),
 
@@ -161,5 +205,14 @@ class _SignUpViewState extends State<SignUpView> {
         ),
       ],
     );
+  }
+
+  void getPhoneNumber(String phoneNumber) async {
+    PhoneNumber number =
+        await PhoneNumber.getRegionInfoFromPhoneNumber(phoneNumber, 'US');
+
+    setState(() {
+      this.number = number;
+    });
   }
 }

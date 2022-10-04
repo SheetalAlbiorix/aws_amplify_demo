@@ -3,6 +3,8 @@ import 'package:amplify_ui_component/files/reset_password_email.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../next_screen.dart';
+
 class SignInView extends StatefulWidget {
   @override
   _SignInViewState createState() => _SignInViewState();
@@ -12,33 +14,69 @@ class _SignInViewState extends State<SignInView> {
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
 
-  String _signUpError = "";
-
   @override
   void initState() {
     super.initState();
   }
 
   void _signIn() async {
-    // Sign out before in case a user is already signed in
-    // If a user is already signed in - Amplify.Auth.signIn will throw an exception
     try {
       await Amplify.Auth.signOut();
     } on PlatformException catch (e) {
       print(e.code);
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('$e'),
+          // Change to something to show a meaningful error message
+          backgroundColor: Theme.of(context).errorColor,
+        ),
+      );
     }
 
     try {
       await Amplify.Auth.signIn(
           username: usernameController.text.trim(),
           password: passwordController.text.trim());
-      Navigator.pop(context, true);
-    } on PlatformException catch (e) {
-      setState(() {
-        _signUpError = e.code;
-        print(e.code);
-      });
+      Navigator.of(context).pushReplacement(MaterialPageRoute(
+        builder: (_) {
+          return NextScreen();
+        },
+      ));
+    } on PlatformException catch (e, s) {
+      if (e.code.toString().contains("NotAuthorizedException")) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('$e'),
+            // Change to something to show a meaningful error message
+            backgroundColor: Theme.of(context).errorColor,
+          ),
+        );
+      }
+      print("Exception ${e.message}");
+      print("Exception $e");
+      print("StackTrace $s");
+      /*    ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('$e'),
+          // Change to something to show a meaningful error message
+          backgroundColor: Theme.of(context).errorColor,
+        ),
+      );*/
     }
+    /* on PlatformException catch (e) {
+      print(e);
+      setState(() {
+        // _signUpError = e.code;
+
+      });
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('$e'),
+          // Change to something to show a meaningful error message
+          backgroundColor: Theme.of(context).errorColor,
+        ),
+      );
+    }*/
   }
 
   @override
@@ -76,13 +114,23 @@ class _SignInViewState extends State<SignInView> {
                 ),
 
                 InkWell(
-                  child: const Text("Forgot Password?"),
-                  onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const ResetPasswordView()),
-                  ),
-                ),
+                    child: const Text("Forgot Password?"),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const ResetPasswordView()),
+                      );
+                      SnackBar(
+                        content: const Text('Yay! A SnackBar!'),
+                        action: SnackBarAction(
+                          label: 'Undo',
+                          onPressed: () {
+                            // Some code to undo the change.
+                          },
+                        ),
+                      );
+                    }),
                 // ErrorView(_signUpError)
               ],
             ),

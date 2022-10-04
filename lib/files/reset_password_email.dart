@@ -64,7 +64,7 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
         children: <Widget>[
           Expanded(
             child: Padding(
-              padding: EdgeInsets.all(10.0),
+              padding: const EdgeInsets.all(10.0),
               child: Column(
                 children: [
                   Visibility(
