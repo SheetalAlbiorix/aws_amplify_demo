@@ -25,10 +25,54 @@ class SignInScreenController extends GetxController {
       await Amplify.Auth.signIn(
           username: emailController.text.trim(),
           password: passwordController.text.trim());
+      getLogin();
       Get.to(NextScreen());
     } on PlatformException catch (e) {
       _signUpError = e.code;
       print(e.code);
+    }
+  }
+
+  getLogin() async {
+    String username = emailController.text;
+    String password = passwordController.text;
+    bool remember = signInController.checkBoxBool.value;
+    matchedUser = await db.getLogin(signInController.emailController.text,
+        signInController.passwordController.text);
+    if (matchedUser == null) {
+      return Get.defaultDialog(
+          title: BaseStrings.welcome,
+          middleText: BaseStrings.invalidEmailOrPassword,
+          actions: <Widget>[
+            // usually buttons at the bottom of the dialog
+            ElevatedButton(
+              child: const Text(BaseStrings.close),
+              onPressed: () {
+                Get.back();
+              },
+            ),
+          ],
+          backgroundColor: Colors.teal,
+          titleStyle: const TextStyle(color: Colors.white),
+          // middleTextStyle: TextStyle(color: Colors.white),
+          radius: 30);
+    } else {
+      if (username != '' && password != '' && remember != '') {
+        SharedData.saveData(username, password, remember);
+      }
+      Get.to(Dashboard());
+    }
+  }
+
+  void fetchAuthSession() async {
+    try {
+      final result = await Amplify.Auth.fetchAuthSession(
+        options: CognitoSessionOptions(getAWSCredentials: true),
+      );
+      String identityId = (result as CognitoAuthSession).identityId!;
+      safePrint('identityId: $identityId');
+    } on AuthException catch (e) {
+      safePrint(e.message);
     }
   }
 

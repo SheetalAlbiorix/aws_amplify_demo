@@ -1,7 +1,39 @@
+import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
+import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:amplify_ui_component/view/ui/screens.dart';
 import 'package:flutter/material.dart';
 
-class NextScreen extends StatelessWidget {
+class NextScreen extends StatefulWidget {
+  @override
+  State<NextScreen> createState() => _NextScreenState();
+}
+
+class _NextScreenState extends State<NextScreen> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    fetchAuthSession();
+    super.initState();
+  }
+
+  fetchAuthSession() async {
+    try {
+      CognitoAuthSession res = await Amplify.Auth.fetchAuthSession(
+              options: CognitoSessionOptions(getAWSCredentials: true))
+          as CognitoAuthSession;
+      /*   if(res.isSignedIn){
+        return
+
+      }*/
+
+      print(
+          'Session Sign In Status = ${res.userPoolTokens!.accessToken.toString()}');
+    } on AmplifyException catch (e) {
+      print(e);
+      print(e);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

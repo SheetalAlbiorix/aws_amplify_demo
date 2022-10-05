@@ -82,6 +82,7 @@ class _SignInViewState extends State<SignInView> {
       await Amplify.Auth.signIn(
           username: emailController.text.trim(),
           password: passwordController.text.trim());
+      Amplify.Auth.getCurrentUser();
       Navigator.pop(context, true);
     } on PlatformException catch (e) {
       setState(() {

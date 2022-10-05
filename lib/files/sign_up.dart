@@ -14,6 +14,7 @@ class _SignUpViewState extends State<SignUpView> {
   final lastnameController = TextEditingController();
   final passwordController = TextEditingController();
   final emailController = TextEditingController();
+
   // final phoneController = TextEditingController();
   final confirmationCodeController = TextEditingController();
 
@@ -34,6 +35,8 @@ class _SignUpViewState extends State<SignUpView> {
       CognitoUserAttributeKey.email: emailController.text,
       CognitoUserAttributeKey.name:
           "${firstnameController.text} ${lastnameController.text}",
+      CognitoUserAttributeKey.givenName: firstnameController.text,
+      CognitoUserAttributeKey.familyName: lastnameController.text,
     };
     try {
       await Amplify.Auth.signUp(
@@ -81,7 +84,7 @@ class _SignUpViewState extends State<SignUpView> {
         Expanded(
           // wrap your Column in Expanded
           child: Padding(
-            padding: EdgeInsets.all(10.0),
+            padding: const EdgeInsets.all(10.0),
             child: Column(
               children: [
                 Visibility(
