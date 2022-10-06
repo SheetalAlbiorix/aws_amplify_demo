@@ -1,6 +1,7 @@
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:amplify_ui_component/view/ui/screens.dart';
+import 'package:amplify_ui_component/view/utils/helper/helpers.dart';
 import 'package:flutter/material.dart';
 
 class NextScreen extends StatefulWidget {
@@ -60,7 +61,7 @@ class _NextScreenState extends State<NextScreen> {
                 child: Center(
                   child: ElevatedButton(
                     // color: Colors.lightBlue,
-                    onPressed: () => _signOut(context),
+                    onPressed: () => signOut(context),
                     child: const Text(
                       'Sign Out',
                       style: TextStyle(
@@ -78,7 +79,8 @@ class _NextScreenState extends State<NextScreen> {
     );
   }
 
-  void _signOut(BuildContext context) {
+  void signOut(BuildContext context) {
+    clearData();
     Navigator.of(context).pushReplacement(
       MaterialPageRoute(
         builder: (_) {

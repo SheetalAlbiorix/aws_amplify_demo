@@ -21,6 +21,8 @@ class SharedData {
     print(remember);
     if (remember == false) {
       Get.to(() => SignInScreen());
+    } else if (remember == true) {
+      Get.to(() => NextScreen());
     } else {
       Get.to(() => NextScreen());
     }
@@ -44,14 +46,11 @@ class SharedData {
 
     // Get.to(() => const Dashboard());
   }
+}
 
-  static saveImage(imageFle) async {
-    final prefs = await SharedPreferences.getInstance();
-    prefs.setString('photo_image', imageFle);
-  }
-
-  void loadImage() async {
-    final prefs = await SharedPreferences.getInstance();
-    imageFle = (prefs.getString('photo_image') ?? imageFle);
-  }
+void clearData() async {
+  final prefs = await SharedPreferences.getInstance();
+  prefs.setBool('login', false);
+  prefs.setBool('remember_me', false);
+  prefs.clear();
 }
