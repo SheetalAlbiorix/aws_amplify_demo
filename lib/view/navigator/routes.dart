@@ -1,7 +1,6 @@
 import 'package:get/get.dart';
 
 import '../ui/confirmation_otp_code_screen.dart';
-import '../ui/resetpassword.dart';
 import '../ui/screens.dart';
 import '../utils/base_constant/base_constants.dart';
 

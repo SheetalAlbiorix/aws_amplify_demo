@@ -1,10 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-
-import '../../viewmodel/controller.dart';
-import '../utils/base_constant/base_constants.dart';
-import '../utils/widgets/widgets.dart';
-
+part of screens;
 
 class ResetPassword extends GetView<ForgotPasswordController> {
   final ForgotPasswordController forgotPasswordController = Get.find();

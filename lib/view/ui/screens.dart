@@ -18,6 +18,9 @@ import '../utils/widgets/widgets.dart';
 part 'account_created_screen.dart';
 part 'forgot_password_screen.dart';
 part 'on_boarding_screen.dart';
+
+part 'resetpassword.dart';
+
 part 'sent_email_screen.dart';
 part 'signin_screen.dart';
 part 'signupscreen.dart';

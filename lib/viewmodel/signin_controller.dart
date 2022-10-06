@@ -22,11 +22,11 @@ class SignInScreenController extends GetxController {
     }
 
     try {
-      await Amplify.Auth.signIn(
+      /*  await Amplify.Auth.signIn(
           username: emailController.text.trim(),
-          password: passwordController.text.trim());
-      getLogin();
-      Get.to(NextScreen());
+          password: passwordController.text.trim());*/
+      await getLogin();
+      // Get.to(NextScreen());
     } on PlatformException catch (e) {
       _signUpError = e.code;
       print(e.code);
@@ -36,17 +36,18 @@ class SignInScreenController extends GetxController {
   getLogin() async {
     String username = emailController.text;
     String password = passwordController.text;
-    bool remember = signInController.checkBoxBool.value;
-    matchedUser = await db.getLogin(signInController.emailController.text,
-        signInController.passwordController.text);
+    bool remember = rememberMeCheckBox.value;
+    var matchedUser = await Amplify.Auth.signIn(
+        username: emailController.text.trim(),
+        password: passwordController.text.trim());
     if (matchedUser == null) {
       return Get.defaultDialog(
-          title: BaseStrings.welcome,
-          middleText: BaseStrings.invalidEmailOrPassword,
+          title: BaseStrings.send,
+          middleText: BaseStrings.password,
           actions: <Widget>[
             // usually buttons at the bottom of the dialog
             ElevatedButton(
-              child: const Text(BaseStrings.close),
+              child: Text(BaseStrings.start),
               onPressed: () {
                 Get.back();
               },
@@ -60,7 +61,7 @@ class SignInScreenController extends GetxController {
       if (username != '' && password != '' && remember != '') {
         SharedData.saveData(username, password, remember);
       }
-      Get.to(Dashboard());
+      Get.to(NextScreen());
     }
   }
 

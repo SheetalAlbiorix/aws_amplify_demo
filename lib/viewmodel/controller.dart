@@ -3,7 +3,6 @@ library controller;
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:amplify_ui_component/next_screen.dart';
-import 'package:amplify_ui_component/view/ui/resetpassword.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
@@ -19,6 +18,7 @@ import '../model/on_boarding_model.dart';
 import '../view/ui/confirmation_otp_code_screen.dart';
 import '../view/ui/screens.dart';
 import '../view/utils/base_constant/base_constants.dart';
+import '../view/utils/helper/helpers.dart';
 
 part 'forgot_password_controller.dart';
 part 'on_boarding_controller.dart';
