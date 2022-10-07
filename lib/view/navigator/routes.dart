@@ -1,3 +1,8 @@
+import 'package:amplify_ui_component/next_screen.dart';
+import 'package:amplify_ui_component/view/ui/FacebookHome/PostPage.dart';
+
+import 'package:amplify_ui_component/view/ui/FacebookHome/FbHomeScreen.dart';
+import 'package:amplify_ui_component/view/ui/InstaHome/insta_home.dart';
 import 'package:get/get.dart';
 
 import '../ui/confirmation_otp_code_screen.dart';
@@ -43,6 +48,22 @@ class Pages {
       GetPage(
         name: BaseRoute.verifyPhoneNumber,
         page: () => VerifyPhoneNumber(),
+      ),
+      GetPage(
+        name: BaseRoute.success,
+        page: () =>  NextScreen(),
+      ),
+      GetPage(
+        name: BaseRoute.fbhome,
+        page: () =>  FbHomeScreen(),
+      ),
+      GetPage(
+        name: BaseRoute.instaHome,
+        page: () =>  InstaHome(),
+      ),
+      GetPage(
+        name: BaseRoute.postpage,
+        page: () =>  PostPage(),
       ),
     ];
   }

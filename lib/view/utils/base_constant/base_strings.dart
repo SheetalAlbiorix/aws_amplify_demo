@@ -2,6 +2,12 @@ part of base_constants;
 
 class BaseStrings {
   static const String code = 'Code';
+  static const String live = 'Live';
+  static const String photo = 'Photo';
+  static const String room = 'Room';
+  static const String title = 'Friendy';
+  static const String insta = 'Instagram Page';
+  static const String fb = 'Facebook Page';
   static const String start = 'Start';
   static const String appName = 'My Village';
   static const String logIn = 'Log In';
@@ -30,7 +36,7 @@ class BaseStrings {
       'We have created a comfortable learning environment so that you always have the motivation to move forward.';
 
   /// Sign-in Screen
-  static const String signIn = 'Sign In.';
+  static const String signIn = 'Sign In';
   static const String email = 'Email';
   static const String password = 'Password';
   static const String welcomeBack = 'Welcome Back!';
@@ -80,4 +86,5 @@ class BaseStrings {
   static const String didntReceiveTheOtp = 'Did’t receive the OTP?';
   static const String resend = 'Resend.';
   static const String verify = 'verify';
+  static const String signOut = 'SignOut';
 }

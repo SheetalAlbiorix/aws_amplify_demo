@@ -1,10 +1,10 @@
 {
   "version": "1",
   "cognitoConfig": {
-    "identityPoolName": "testAuthIdentityPool",
+    "identityPoolName": "myvillageprojectadmifeb4ea87_identitypool_feb4ea87",
     "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "myvill800e8a82",
-    "userPoolName": "myvillage2022",
+    "resourceNameTruncated": "myvillfeb4ea87",
+    "userPoolName": "myvillageprojectadmifeb4ea87_userpool_feb4ea87",
     "autoVerifiedAttributes": [
       "email"
     ],
@@ -14,39 +14,39 @@
     ],
     "smsAuthenticationMessage": "Your authentication code is {####}",
     "smsVerificationMessage": "Your verification code is {####}",
-    "emailVerificationSubject": "Verification code: {####}",
-    "emailVerificationMessage": "Verification code: {####}",
+    "emailVerificationSubject": "Your verification code",
+    "emailVerificationMessage": "Your verification code is {####}",
     "defaultPasswordPolicy": false,
     "passwordPolicyMinLength": 8,
-    "passwordPolicyCharacters": [
-      "Requires Lowercase",
-      "Requires Numbers",
-      "Requires Symbols",
-      "Requires Uppercase"
-    ],
+    "passwordPolicyCharacters": [],
     "requiredAttributes": [
-      "name"
+      "email",
+      "family_name",
+      "given_name",
+      "name",
+      "phone_number"
     ],
     "aliasAttributes": [],
     "userpoolClientGenerateSecret": false,
     "userpoolClientRefreshTokenValidity": 30,
-    "userpoolClientWriteAttributes": [],
-    "userpoolClientReadAttributes": [],
-    "userpoolClientLambdaRole": "myvill800e8a82_userpoolclient_lambda_role",
+    "userpoolClientWriteAttributes": [
+      "email"
+    ],
+    "userpoolClientReadAttributes": [
+      "email"
+    ],
+    "userpoolClientLambdaRole": "myvillfeb4ea87_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "800e8a82",
-    "resourceName": "myvillage2022",
+    "sharedId": "feb4ea87",
+    "resourceName": "myvillageprojectadmifeb4ea87",
     "authSelections": "identityPoolAndUserPool",
-    "serviceName": "Cognito",
+    "useDefault": "default",
     "usernameAttributes": [
       "email"
     ],
-    "useDefault": "manual",
-    "userPoolGroups": false,
+    "triggers": {},
     "userPoolGroupList": [],
-    "adminQueries": false,
-    "thirdPartyAuth": false,
-    "authProviders": [],
+    "serviceName": "Cognito",
     "usernameCaseSensitive": false,
     "useEnabledMfas": true
   }

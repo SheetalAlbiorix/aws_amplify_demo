@@ -71,14 +71,6 @@ class _MyAppState extends State<MyApp> {
     });
   }*/
 
-  Widget _display() {
-    if (_isAmplifyConfigured) {
-      return LandingPage();
-    } else {
-      return LoadingPage();
-    }
-  }
-
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -90,7 +82,10 @@ class _MyAppState extends State<MyApp> {
       darkTheme: ThemeService.dark,
       themeMode: ThemeService().theme,
       getPages: Pages.pages(),
-      initialRoute: BaseRoute.splash,
+  // initialRoute: BaseRoute.fbhome,
+    //  initialRoute: BaseRoute.instaHome,
+    //  initialRoute: BaseRoute.success,
+     initialRoute: BaseRoute.splash,
     );
   }
 }

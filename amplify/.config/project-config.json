@@ -2,7 +2,7 @@
   "providers": [
     "awscloudformation"
   ],
-  "projectName": "myvillage2022",
+  "projectName": "MyVillageProjectAdmi",
   "version": "3.1",
   "frontend": "flutter",
   "flutter": {

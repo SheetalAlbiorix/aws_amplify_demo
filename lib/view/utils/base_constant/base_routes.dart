@@ -10,4 +10,8 @@ class BaseRoute {
   static const String forgotPassword = '/forgotPassword';
   static const String accountCreated = '/AccountCreated';
   static const String verifyPhoneNumber = '/VerifyPhoneNumber';
+  static const String success = '/Success';
+  static const String fbhome='/Fbhome';
+  static const String instaHome='/Instahome';
+  static const String postpage='/Postpage';
 }

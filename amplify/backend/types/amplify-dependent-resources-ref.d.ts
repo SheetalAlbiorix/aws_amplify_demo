@@ -1,18 +1,20 @@
 export type AmplifyDependentResourcesAttributes = {
-    "function": {
-        "signupdemoamplifylayera905e0aa": {
-            "Arn": "string"
-        }
-    },
     "auth": {
-        "myvillage2022": {
+        "myvillageprojectadmifeb4ea87": {
             "IdentityPoolId": "string",
             "IdentityPoolName": "string",
             "UserPoolId": "string",
             "UserPoolArn": "string",
             "UserPoolName": "string",
             "AppClientIDWeb": "string",
-            "AppClientID": "string"
+            "AppClientID": "string",
+            "CreatedSNSRole": "string"
+        }
+    },
+    "api": {
+        "myvillageprojectadmi": {
+            "GraphQLAPIIdOutput": "string",
+            "GraphQLAPIEndpointOutput": "string"
         }
     }
 }

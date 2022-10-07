@@ -1,0 +1,12 @@
+{
+  "AppSyncApiName": "myvillageprojectadmi",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authmyvillageprojectadmifeb4ea87",
+      "Outputs.UserPoolId"
+    ]
+  },
+  "AuthModeLastUpdated": "2022-10-05T10:58:49.928Z"
+}

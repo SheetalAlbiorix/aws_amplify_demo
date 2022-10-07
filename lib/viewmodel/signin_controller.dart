@@ -2,7 +2,7 @@ part of controller;
 
 class SignInScreenController extends GetxController {
   final signInFormKey = GlobalKey<FormState>();
-
+  final LoadingState loadingState = LoadingState();
   // RxString nameController = RxString('');
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
@@ -10,29 +10,72 @@ class SignInScreenController extends GetxController {
   var rememberMeCheckBox = false.obs;
   RxString signInError = ''.obs;
   String _signUpError = "";
+  var onLoading=false.obs;
+  final ProgressService progressService = ProgressService();
+
+
 
   /*RxString passError = ''.obs;*/
   void _signIn() async {
     // Sign out before in case a user is already signed in
     // If a user is already signed in - Amplify.Auth.signIn will throw an exception
     try {
-      await Amplify.Auth.signOut();
+      final SignOutResult res = await Amplify.Auth.signOut();
+     //progressService.dismissProgress();
     } on PlatformException catch (e) {
+      Get.snackbar(
+        e.code.toString(),"Failed",
+        colorText: Colors.white,
+        backgroundColor: Colors.red,
+        icon: Icon(Icons.error, color: Colors.white),
+        isDismissible: true,
+        forwardAnimationCurve: Curves.easeOutBack,
+        snackPosition: SnackPosition.BOTTOM,
+      );
       print(e.code);
+      progressService.dismissProgress();
     }
 
+
+
     try {
+
       await Amplify.Auth.signIn(
           username: emailController.text.trim(),
           password: passwordController.text.trim());
-      Get.to(NextScreen());
-    } on PlatformException catch (e) {
-      _signUpError = e.code;
-      print(e.code);
+      progressService.dismissProgress();
+      Get.to(() => NextScreen());
+
+      Get.snackbar(
+        "Signed In Successfully","Success",
+        colorText: Colors.white,
+        duration: Duration(seconds: 2),
+        backgroundColor: Colors.green,
+        icon: Icon(Icons.error, color: Colors.white),
+        snackPosition: SnackPosition.BOTTOM,
+        isDismissible: true,
+        forwardAnimationCurve: Curves.easeOutBack,
+      );
+
+
+    } on AuthException catch (e) {
+      _signUpError = e.message.toString();
+      Get.snackbar(
+       e.message.toString(),"Failed",
+        colorText: Colors.white,
+        backgroundColor: Colors.red,
+        icon: Icon(Icons.error, color: Colors.white),
+        snackPosition: SnackPosition.BOTTOM,
+        isDismissible: true,
+        forwardAnimationCurve: Curves.easeOutBack,
+      );
+      progressService.dismissProgress();
+      print(e.message.toString());
     }
   }
 
   submit() async {
+    progressService.showProgress();
     if (emailController.text.isEmpty && passwordController.text.isEmpty) {
       return Get.snackbar(
         backgroundColor: BaseColors.darkGrey,
@@ -56,11 +99,12 @@ class SignInScreenController extends GetxController {
         backgroundColor: BaseColors.darkGrey,
         colorText: BaseColors.white,
         "Error",
-        "Please check your Pasword",
+        "Please check your Password",
         snackPosition: SnackPosition.TOP,
       );
     } else if (emailController.text.isNotEmpty &&
         passwordController.text.isNotEmpty) {
+
       return _signIn();
     } else {
       // Get.back();

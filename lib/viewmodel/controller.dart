@@ -4,6 +4,8 @@ import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:amplify_ui_component/next_screen.dart';
 import 'package:amplify_ui_component/view/ui/resetpassword.dart';
+import 'package:amplify_ui_component/view/utils/helper/ProgressService.dart';
+import 'package:amplify_ui_component/view/utils/helper/loadingData.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

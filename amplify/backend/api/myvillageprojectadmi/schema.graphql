@@ -1,0 +1,31 @@
+enum OrganizationsStructureEnum {
+  service
+  advocacy
+  membership
+}
+
+enum OrganizationImpactEnum {
+  positive
+  neutral
+  negative
+}
+
+type Organizations @model @auth(rules: [{allow: private}]) {
+  id: ID!
+  type: String!
+  teamSize: String!
+  name: String!
+  organizationStructure: OrganizationsStructureEnum!
+  chapterName: String
+  oraganizationFunction: String!
+  shortDescription: String!
+  longDescription: String
+  estimatedAnnualBudget: Int!
+  organizationImpact: OrganizationImpactEnum!
+  contactFullName: String!
+  contactEmail: String!
+  contactPhoneNumber: String!
+  contactRole: String!
+  isActive: Boolean!
+}
+ 
